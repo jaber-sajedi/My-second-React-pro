@@ -8,8 +8,8 @@ export default class Counter extends React.Component {
     this.handleDefence = this.handleDefence.bind(this);
     this.state = {
       count: 0,
-      gameStatus:"",
-      lastPlay:"",
+      gameStatus: "",
+      lastPlay: "",
     };
   }
 
@@ -22,8 +22,9 @@ export default class Counter extends React.Component {
       let newCount = perviousState.count + Math.round(Math.random() * 10);
       return {
         count: newCount,
-        lastPlay:"Attack",
-        gameStatus:newCount>0 ?"YOU WON!!":perviousState.gameStatus,
+        lastPlay: "حمله ",
+        gameStatus:
+          newCount > 0 ? "شما برنده شده اید !!" : perviousState.gameStatus,
       };
     });
   };
@@ -34,8 +35,9 @@ export default class Counter extends React.Component {
       let newCount = perviousState.count - Math.round(Math.random() * 10);
       return {
         count: newCount,
-        lastPlay:"Defence",
-        gameStatus:newCount>-10 ?"YOU LOST!!":perviousState.gameStatus,
+        lastPlay: "دفاع",
+        gameStatus:
+          newCount > -10 ? "شما بانده شده اید !!" : perviousState.gameStatus,
       };
     });
   };
@@ -54,65 +56,76 @@ export default class Counter extends React.Component {
     this.setState(() => {
       return {
         count: 0,
-        lastPlay:"",
-        gameStatus:"",
+        lastPlay: "",
+        gameStatus: "",
       };
     });
   };
 
   render() {
     return (
-      <div className="row text-white text-center">
-        <h1>Game Score :{this.state.count}</h1>
-        <p>you win at +10 point and lose at -10 points!</p>
-        <p>Last Play :{this.state.lastPlay}</p>
-        <h3>Game State :{this.state.gameStatus}</h3>
+      <div className=" text-white text-center container"  >
+        <h1>امتیاز بازی :{this.state.count}</h1>
+        <p>
+          اگر امتیاز شما +10 شود برنده می شود و اگر امتیاز شما -10 شود بازنده
+          اید!!!
+        </p>
+        <p>آخرین بازی :{this.state.lastPlay}</p>
+        <h3>وضعیت بازی:{this.state.gameStatus}</h3>
 
-        <div className="col-6 col-md-3 offset-md-3">
-          <img
-            alt=""
-            style={{
-              width: "100px",
-              cursor: "pointer",
-              border: "1px solid green",
-            }}
-            className="p-4 rounded"
-            src={attack}
-            onClick={this.handleAttack}
-          />
-        </div>
-
-        <div className="col-6 col-md-3  ">
-          <img
-            alt=""
-            style={{
-              width: "100px",
-              cursor: "pointer",
-              border: "1px solid red",
-            }}
-            className="p-4 rounded"
-            src={defend}
-            onClick={this.handleDefence}
-          />
-        </div>
-
-
-        <div className="col-12 col-md-4 offset-md-4 p-4">
-          <button
-            className="btn btn-secondary w-100 mt-2"
-            onClick={this.handleRandomPlay}
+        <div className="row">
+          <div
+            className="col-lg-6 col-md-6 text-start 
+           col-6  "
           >
-            Random Play
-          </button>
-          <br />
-          <button
-            className="btn btn-warning w-100 mt-2"
-            onClick={this.handleReset}
-          >
-            Reset
-          </button>
+            <img
+              alt=""
+              style={{
+                width: "100px",
+                cursor: "pointer",
+                border: "1px solid green",
+              }}
+              className="p-4 rounded"
+              src={attack}
+              onClick={this.handleAttack}
+            />
+          </div>
+          <div className="col-lg-6 col-md-6  col-6   text-end ">
+            <img
+              alt=""
+              style={{
+                width: "100px",
+                cursor: "pointer",
+                border: "1px solid red",
+              }}
+              className="p-4 rounded"
+              src={defend}
+              onClick={this.handleDefence}
+            />
+          </div>
         </div>
 
+        <div className=" row">
+          <div className="col-lg-12 col-md-12  col-sm-12">
+            <button
+              className=" btn btn-secondary w-50 mt-2"
+              onClick={this.handleRandomPlay}
+            >
+              بازی تصادفی
+            </button>
+            <br />
+          </div>
+
+          <div className="col-lg-12 col-md-12  col-sm-12 ">
+            <button
+              className=" btn btn-warning w-50  mt-2"
+              onClick={this.handleReset}
+            >
+              تنظیم مجدد
+            </button>
+          </div>
+          
+        </div>
       </div>
     );
   }
